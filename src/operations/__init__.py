@@ -1,43 +1,40 @@
 
+from typing import Union
+Number = Union[int,float]
+
+def _validate_num(a: Number) -> float:
+    """
+    Check if input is a valid Number
+
+    Args:
+        a: The input value of any type to check.
+    Returns:
+        float if inputted value is of a valid type
+    """
+    if not (isinstance(a,Number)) or isinstance(a,bool):
+        raise TypeError(f"{a} is an invalid input")
+    return float(a)
+
+
+def _verify_inputs(a: Number, b:Number) -> tuple[float,float]:
+    """
+    Check if inputs are valid
+
+    Args:
+        a: first number to check if it has a valid value
+        b: second number to check it has a valid value
+    Returns:
+        returns numbers if they are valid inputs
+    """
+    
+    return _validate_num(a), _validate_num(b)
+    
+
+
 class operations:
     
-    @ staticmethod
-    def _validate_num(a) -> float:
-        """
-        Check if input is a valid Number
-
-        Args:
-            a: The input value of any type to check.
-        Returns:
-            None if value is not a valid number, returns the number itself if it is
-        """
-        if not (isinstance(a,(float,int))) or isinstance(a,bool):
-            raise TypeError(f"{a} is an invalid input")
-        return float(a)
-    
-    @ staticmethod
-    def _verify_inputs(a,b):
-        """
-        Check if inputs are valid
-
-        Args:
-            a: first number to check if it has a valid value
-            b: second number to check it has a valid value
-        Returns:
-            None if either value is not a valid input, returns the numbers
-        """
-        val_a = operations._validate_num(a)
-        val_b = operations._validate_num(b)
-
-        if val_a == None and val_b == None:
-            return None
-        
-        return val_a, val_b
-        
-
-    
     @staticmethod
-    def additon(a,b):
+    def additon(a: Number,b: Number) -> float:
         """
         adds two numbers
 
@@ -47,12 +44,12 @@ class operations:
         Returns:
             the sum of a and b
         """
-        val_a, val_b = operations._verify_inputs(a,b)
+        val_a, val_b = _verify_inputs(a,b)
         
         return val_a + val_b
 
     @staticmethod
-    def subtraction(a,b):
+    def subtraction(a: Number,b: Number) -> float:
         """
         subtracts b from a
 
@@ -62,12 +59,12 @@ class operations:
         Returns:
             the difference of b from a
         """
-        val_a, val_b = operations._verify_inputs(a,b)
+        val_a, val_b = cls._verify_inputs(a,b)
         
         return val_a - val_b
 
     @staticmethod
-    def multiplication(a,b):
+    def multiplication(a: Number,b: Number) -> float:
         """
         multiplies a and b
 
@@ -77,14 +74,14 @@ class operations:
         Returns:
             the product of a and b
         """
-        val_a, val_b = operations._verify_inputs(a,b)
+        val_a, val_b = _verify_inputs(a,b)
 
         return val_a * val_b
 
     @staticmethod
-    def division(a,b):
+    def division(a: Number,b: Number) -> float:
 
-        val_a, val_b = operations._verify_inputs(a,b)
+        val_a, val_b = _verify_inputs(a,b)
 
         if b == 0:
             raise ValueError("cannot divide by 0")
