@@ -7,17 +7,10 @@ Number = Union[int,float]
 #---------------------------------------
 # Unit tests for invalid input
 #---------------------------------------
-@pytest.mark.parametrize("a,b,expected",
-                         [(1,'a'), # adding two positive ints
-                          ('a',1)], # adding two zeros
-                          ids=[
-                              "invalid_first_value",
-                              "invalid_second_value"
-                          ]
-                          )
-def test_invalid(a: Number, b: Number) -> None:
-    with pytest.raises(TypeError, match=f"{a} is an invalid input"):
-    assert result == expected, f"Expected addition({a},{b}) to be {expected} but got {result}"
+def test_invalid_input():
+    invalid_in = 'a'
+    with pytest.raises(TypeError, match=f"{invalid_in} is an invalid input"):
+        operations.addition(1,invalid_in)
 
 
 #---------------------------------------
@@ -42,7 +35,7 @@ def test_invalid(a: Number, b: Number) -> None:
                           )
 def test_addition(a: Number, b: Number, expected: Number) -> None:
 
-    result = operations.additon(a,b)
+    result = operations.addition(a,b)
     assert result == expected, f"Expected addition({a},{b}) to be {expected} but got {result}"
 
 #---------------------------------------
@@ -110,3 +103,24 @@ def test_division(a: Number, b:Number, expected: Number) -> None:
 
     result = operations.division(a,b)
     assert result == expected, f"expected division({a},{b}) to be {expected} but got {result}"
+
+@pytest.mark.parametrize(
+"a, b",
+[
+    (1, 0),    # Test dividing by zero with positive dividend
+    (-1, 0),   # Test dividing by zero with negative dividend
+    (0, 0),    # Test dividing zero by zero
+],
+ids=[
+    "divide_positive_dividend_by_zero",
+    "divide_negative_dividend_by_zero",
+    "divide_zero_by_zero",
+]
+)
+def test_division_by_zero(a: Number, b: Number) -> None:
+
+    with pytest.raises(ValueError, match="cannot divide by 0") as exitinfo:
+        operations.division(a, b)
+    
+    assert "cannot divide by 0" in str(exitinfo.value), \
+        f"Expected error message 'cannot divide by 0', but got '{exitinfo.value}'"
