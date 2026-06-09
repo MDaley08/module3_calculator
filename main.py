@@ -1,4 +1,4 @@
 from src.calculator import calculator
 
-if __name__ == calculator:
+if __name__ == "__main__":
     calculator()
