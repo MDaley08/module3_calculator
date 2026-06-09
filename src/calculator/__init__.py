@@ -1,4 +1,4 @@
-from src.operations import addition, subtraction, multiplication, division
+from src.operations import operations as op
 MAN_STRING = """This calculator supports (+)addition, (-)subtraction, (*) multiplicaiton and (/)division
     Enter two numbers with an operator between. ex: num1 + num2"""
 
@@ -31,14 +31,14 @@ def calculator():
 
         # Now we check what operation the user asked for and call the right function (addition, subtraction, etc.).
         if operator == "+":
-            result = addition(num1, num2)  # We call the addition function to add the two numbers.
+            result = op.addition(num1, num2)  # We call the addition function to add the two numbers.
         elif operator == "-":
-            result = subtraction(num1, num2)  # We call the subtraction function to subtract the two numbers.
+            result = op.subtraction(num1, num2)  # We call the subtraction function to subtract the two numbers.
         elif operator == "*":
-            result = multiplication(num1, num2)  # We call the multiplication function to multiply the two numbers.
+            result = op.multiplication(num1, num2)  # We call the multiplication function to multiply the two numbers.
         elif operator == "/":
             try:
-                result = division(num1, num2)  # We call the division function to divide the two numbers.
+                result = op.division(num1, num2)  # We call the division function to divide the two numbers.
             except ValueError as e:
                 # This part handles the case where someone tries to divide by zero, which we can't do.
                 # The division function will throw an error if someone tries dividing by zero, and we catch that error here.
