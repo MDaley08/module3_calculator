@@ -4,6 +4,21 @@ from typing import Union
 
 Number = Union[int,float]
 
+#---------------------------------------
+# Unit tests for invalid input
+#---------------------------------------
+@pytest.mark.parametrize("a,b,expected",
+                         [(1,'a'), # adding two positive ints
+                          ('a',1)], # adding two zeros
+                          ids=[
+                              "invalid_first_value",
+                              "invalid_second_value"
+                          ]
+                          )
+def test_invalid(a: Number, b: Number) -> None:
+    with pytest.raises(TypeError, match=f"{a} is an invalid input"):
+    assert result == expected, f"Expected addition({a},{b}) to be {expected} but got {result}"
+
 
 #---------------------------------------
 # Unit tests for addition method
