@@ -59,7 +59,7 @@ class operations:
         Returns:
             the difference of b from a
         """
-        val_a, val_b = cls._verify_inputs(a,b)
+        val_a, val_b = _verify_inputs(a,b)
         
         return val_a - val_b
 
