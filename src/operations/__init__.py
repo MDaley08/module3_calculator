@@ -34,7 +34,7 @@ def _verify_inputs(a: Number, b:Number) -> tuple[float,float]:
 class operations:
     
     @staticmethod
-    def additon(a: Number,b: Number) -> float:
+    def addition(a: Number,b: Number) -> float:
         """
         adds two numbers
 
